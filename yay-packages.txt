@@ -1,0 +1,17 @@
+fabric-cli
+gray
+matugen
+gpu-screen-recorder
+grimblast
+hypridle
+hyprlock
+hyprpicker
+hyprshot
+hyprsunset
+uwsm
+zed-sans-font
+ttf-tabler-icons
+bibata-cursors
+zsh-syntax-highlighting
+zsh-autosuggestions
+zsh-sudo
