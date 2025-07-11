@@ -38,6 +38,8 @@ chsh -s /bin/zsh
 
 cd
 
+systemctl enable sddm
+
 #login screen
 git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM && cd SilentSDDM && ./install.sh
 cd ~
