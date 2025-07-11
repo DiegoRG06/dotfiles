@@ -21,33 +21,34 @@ cp -r $HOME/.config/ $HOME/.config-bk/
 echo "Copia de configuracion realizada en .config-bk"
 
 
-cp .zshrc ~/.zshrc
-cp config/* ~/.config/
+cp .zshrc $HOME/.zshrc
+cp -r config/* $HOME/.config/
 
 for line in $(cat pacman-packages.txt); do
-    pacman -S $line
+    sudo pacman -S $line --needed --noconfirm
 done
 
 for line in $(cat yay-packages.txt); do
-    yay -S $line
+    yay -S $line --needed --noconfirm
 done
 
 
 #use zsh 
 chsh -s /bin/zsh
 
+cd
 
 #login screen
 git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM && cd SilentSDDM && ./install.sh
 cd ~
 
 #fzf
-git clone--depth 1 https://github.com/junegunn/fzf.git ~/.fzf 
+git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf 
 ~/.fzf/install
 
 
 #barra de erramientas
-# git clone https://github.com/Axenide/Ax-Shell.git ~/.config/Ax-Shell
+git clone https://github.com/Axenide/Ax-Shell.git ~/.config/Ax-Shell
 # uwsm -- app python ~/.config/Ax-Shell/main.py > /dev/null 2>&1 & disown
 
 #falta nvchad
