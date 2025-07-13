@@ -21,28 +21,32 @@ cp -r $HOME/.config/ $HOME/.config-bk/
 echo "Copia de configuracion realizada en .config-bk"
 
 
-cp .zshrc $HOME/.zshrc
-cp -r config/* $HOME/.config/
+cp $HOME/dotfiles/.zshrc $HOME/.zshrc
+cp -r $HOME/dotfiles/config/* $HOME/.config/
 
-for line in $(cat pacman-packages.txt); do
-    sudo pacman -S $line --needed --noconfirm
-done
 
-for line in $(cat yay-packages.txt); do
-    yay -S $line --needed --noconfirm
-done
+while IFS= read -r line; do
+  # Ignora líneas vacías
+  [[ -z "$line" ]] && continue
+  yay -S --noconfirm "$line"
+done < yay-packages.txt
 
+while IFS= read -r line; do
+  # Ignora líneas vacías
+  [[ -z "$line" ]] && continue
+  sudo pacman -S --noconfirm "$line"
+done < pacman-packages.txt
 
 #use zsh 
 chsh -s /bin/zsh
 
-cd
+cd $HOME
 
-systemctl enable sddm
+sudo systemctl enable sddm
 
 #login screen
 git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM && cd SilentSDDM && ./install.sh
-cd ~
+cd $HOME
 
 #fzf
 git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf 
